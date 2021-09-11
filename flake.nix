@@ -1,5 +1,5 @@
 {
-  description = "A basic flake with a shell";
+  description = "Environment for Exercism exercises. Bring your own editor.";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
@@ -7,6 +7,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       let pkgs = nixpkgs.legacyPackages.${system};
       in {
-        devShell = pkgs.mkShell { buildInputs = with pkgs; [ exercism ]; };
+        devShell =
+          pkgs.mkShell { buildInputs = with pkgs; [ exercism racket ]; };
       });
 }
